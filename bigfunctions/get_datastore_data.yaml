@@ -1,0 +1,69 @@
+type: function_py
+category: Get Data
+author:
+  name: El-Walid
+  url: https://www.linkedin.com/in/el-walid/
+  avatar_url: https://media.licdn.com/dms/image/C4E03AQH6oIAxScy4gw/profile-displayphoto-shrink_800_800/0/1654708759415?e=1691625600&v=beta&t=U6Tgwl4JWamN4qYDJP2b498aJt5thWog84-qnbkz0bU
+description: |
+  Retrieves data from Datastore
+  (Firestore in Datastore mode).
+
+  (💡 *For this to work, `749389685934-compute@developer.gserviceaccount.com` must have datastore user role in your project.*)
+
+  | Param       | Possible values  |
+  |-------------|---|
+  | `project`   | Google Cloud project hosting the Datastore data. Should be unique for one query  |
+  | `namespace` | A namespace is like a dataset / a folder. It has many `kinds` which are like tables. If `namespace` is `null`, `default` namespace will be used. |
+  | `kind`      | `kind` is like a table: a set of similar objects. Cannot be `null`. |
+  | `key`       | Unique identifier where `data` is stored inside `kind`. Can be an integer represented as a string (`key` is then named `id` in Datastore) or any string (`key` is named `name` in Datastore). |
+
+arguments:
+  - name: project
+    type: string
+  - name: namespace
+    type: string
+  - name: kind
+    type: string
+  - name: key
+    type: string
+
+output:
+  name: data
+  type: json
+
+examples:
+  - description: Retrieve `data` from a `kind` in a `namespace` using a specific `key`.
+    arguments:
+      - "'your-project'"
+      - "'your-namespace'"
+      - "'user'"
+      - "'4503604769587200'"
+    output: "{ \"name\": \"Marc Harris\", \"email\": \"marc@harris.com\" }"
+
+code_process_rows_as_batch: true
+
+code: |
+  import google.cloud.datastore
+  from google.api_core.exceptions import PermissionDenied
+
+  try:
+    store = google.cloud.datastore.Client(project=project)
+  except google.api_core.exceptions.PermissionDenied:
+    assert False, f'Service Account `{get_current_service_account()}` does not have read permission on Datastore'
+  if key:
+    try:
+      key = int(key)
+    except:
+      pass
+
+  try:
+    entity_key = store.key(kind, key, namespace=namespace)
+    entity = store.get(entity_key)
+
+  except google.api_core.exceptions.PermissionDenied:
+    assert False, f'Service Account `{get_current_service_account()}` does not have read permission on Datastore'
+
+  return entity
+
+requirements: |
+  google-cloud-datastore
