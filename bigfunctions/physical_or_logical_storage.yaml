@@ -1,0 +1,68 @@
+type: procedure
+category: utils
+author:
+  name: Johan Picard
+  url: https://www.linkedin.com/in/johan-picard/
+  avatar_url: "https://media.licdn.com/dms/image/C4E03AQGJgch4by3ZyA/profile-displayphoto-shrink_800_800/0/1596182656972?e=2147483647&v=beta&t=goYRLhYQkWYCNNgDh4-ScyOlAlKlFIxyskMjHiANbZE"
+description: |
+  Evaluate potential savings from activating Compressed Storage for each dataset of a project
+arguments:
+  - name: project
+    type: string
+  - name: time_travel_duration
+    type: int64
+examples:
+  - description: |
+      call `bigfunctions.eu._physical_or_logical_storage`("bigfunctions.samples");
+      select column_name, data_type from bigfunction_result ;
+    arguments:
+      - "'bigfunctions.samples.natality'"
+    region: EU
+code: |
+  DECLARE active_logical_gib_price FLOAT64 DEFAULT 0.02;
+  DECLARE long_term_logical_gib_price FLOAT64 DEFAULT 0.01;
+  DECLARE active_physical_gib_price FLOAT64 DEFAULT 0.04;
+  DECLARE long_term_physical_gib_price FLOAT64 DEFAULT 0.02;
+  
+  WITH
+   storage_sizes AS (
+     SELECT
+       table_schema AS dataset_name,
+        -- Logical
+        SUM(active_logical_bytes) / power(1024, 3) AS active_logical_gib,
+        SUM(long_term_logical_bytes) / power(1024, 3) AS long_term_logical_gib,
+        -- Physical
+        SUM(active_physical_bytes - time_travel_physical_bytes) / power(1024, 3) AS active_no_time_travel_physical_gib,
+        SUM(time_travel_physical_bytes) / power(1024, 3) AS time_travel_physical_gib,
+        SUM(long_term_physical_bytes) / power(1024, 3) AS long_term_physical_gib,
+      FROM
+        `region-us`.INFORMATION_SCHEMA.TABLE_STORAGE_BY_PROJECT
+      WHERE total_logical_bytes > 0
+      AND total_physical_bytes > 0
+      GROUP BY 1
+   )
+  SELECT
+  dataset_name,
+  -- Logical
+  ROUND(active_logical_gib, 2) AS active_logical_gib,
+  ROUND(long_term_logical_gib, 2) AS long_term_logical_gib,
+  -- Physical
+  ROUND(active_no_time_travel_physical_gib, 2) AS active_no_time_travel_physical_gib,
+  ROUND(time_travel_physical_gib, 2) AS time_travel_physical_gib,
+  ROUND(long_term_physical_gib, 2) AS long_term_physical_gib,
+  -- Compression ratio
+  ROUND(SAFE_DIVIDE(active_logical_gib, active_no_time_travel_physical_gib), 2) AS active_compression_ratio,
+  ROUND(SAFE_DIVIDE(long_term_logical_gib, long_term_physical_gib), 2) AS long_term_compression_ratio,
+  -- Costs logical
+  ROUND(active_logical_gib * active_logical_gib_price, 2) AS active_logical_cost,
+  ROUND(long_term_logical_gib * long_term_logical_gib_price, 2) AS long_term_logical_cost,
+  -- Costs physical
+  ROUND((active_no_time_travel_physical_gib + time_travel_physical_gib) * active_physical_gib_price, 2) AS active_physical_cost,
+  ROUND(long_term_physical_gib * long_term_physical_gib_price, 2) AS long_term_physical_cost,
+  -- Costs total
+  ROUND(((active_logical_gib * active_logical_gib_price) + (long_term_logical_gib * long_term_logical_gib_price)) -
+  (((active_no_time_travel_physical_gib + time_travel_physical_gib) * active_physical_gib_price) + (long_term_physical_gib * long_term_physical_gib_price)), 2) AS total_cost_difference
+  FROM
+  storage_sizes
+  ORDER BY
+  (active_logical_cost + active_physical_cost) DESC;
