@@ -1,0 +1,53 @@
+type: function_sql
+category: transform_date
+author:
+  name: Pierre Moreau
+  url: https://www.linkedin.com/in/pierre-moreau-in85and44/
+  avatar_url: "https://media.licdn.com/dms/image/D4E03AQHUppkwV7fwUw/profile-displayphoto-shrink_800_800/0/1684960816011?e=1692835200&v=beta&t=Bi3uOXaJYJtonTIMExONdiBjVSL_N7llloF7ZWLvAFI"
+description: |
+  Return number of workdays (in int64 value) between two date values
+
+  - `country_code` must be among `[AO, AR, AW, AU, AT, AZ, BD, BY, BE, BO, BW, BR, BG, BI, CA, CL, CN, CO, HR, CU, CW, CY, CZ, DK, DJ, DO, EG, EE, ET, FI, FR, GE, DE, GR, HN, HK, HU, IS, IN, IE, IL, IT, JM, JP, KZ, KE, KR, LV, LS, LT, LU, MG, MW, MY, MT, MX, MD, MA, MZ, NA, NL, NZ, NI, NG, MK, NO, PY, PE, PL, PT, RO, RU, SA, RS, SG, SK, SI, ZA, ES, SZ, SE, CH, TW, TN, TR, UA, AE, GB, US, UY, UZ, VE, VN, ZM, ZW]`
+  - Holiday dates come from <a href="https://python-holidays.readthedocs.io/" target="_blank">`python-holidays`</a>.
+  - `weekend_days` must be a string like `'SATURDAY|SUNDAY'`
+arguments:
+  - name: start_date
+    type: date
+  - name: end_date
+    type: date
+  - name: country_code
+    type: string
+  - name: weekend_days
+    type: string
+output:
+  name: nb_workdays
+  type: int64
+examples:
+  - description: ""
+    arguments:
+      - "date('2023-05-01')"
+      - "date('2023-05-09')"
+      - "'FR'"
+      - "'SATURDAY|SUNDAY'"
+    output: "5"
+code: |
+  (
+
+  with dates as (
+    select date,
+          case when date = date(start_date) then 0
+                else 1
+                end as day_ratio
+    from bigfunctions.eu.dates
+    where country = country_code
+      and date between date(start_date) and date(end_date)
+      and is_public_holiday is false
+      and not regexp_contains(upper(format_date('%A', date)), upper(weekend_days))
+  )
+
+  select case when date(start_date) = date(end_date) then 0
+              else sum(day_ratio)
+              end as n_days
+  from dates
+
+  )
