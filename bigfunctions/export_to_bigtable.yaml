@@ -1,0 +1,82 @@
+type: function_py
+category: export
+author:
+  name: Valentin Cordonnier
+  url: https://www.linkedin.com/in/valentin-cordonnier-99482b1b5
+  avatar_url: "https://storage.googleapis.com/public-bucket-val/photo-output__01.jpg"
+description: Exports values to a given Bigtable table.
+arguments:
+  - name: project_id
+    type: string
+  - name: instance_id
+    type: string
+  - name: table_id
+    type: string
+  - name: column_family
+    type: string
+  - name: column_name
+    type: string
+  - name: row_key
+    type: string
+  - name: value
+    type: string
+output:
+  name: result
+  type: string
+examples:
+  - description: ""
+    arguments:
+      - "'your-project'"
+      - "'your-instance'"
+      - "'your-table'"
+      - "'your-family'"
+      - "'your-column-name'"
+      - "'your-row-key'"
+      - "'your-value'"
+    output: "'200 Message successfully published.'"
+    region: ALL
+code_process_rows_as_batch: true
+code: |
+  import datetime
+  import google.api_core.exceptions
+  from google.cloud import bigtable
+
+  project_id, instance_id, table_id, *_ = rows[0]
+
+  try:
+    client = bigtable.Client(project=project_id, admin=True)
+    instance = client.instance(instance_id)
+  except google.api_core.exceptions.NotFound:
+    assert False, f'Given instance does not exist in given project OR service Account `get_current_service_account()` does have the permission to access it'
+  except google.api_core.exceptions.PermissionDenied:
+    assert False, f'Service Account `get_current_service_account()` does not have access permission for given instance of given project'
+
+
+  try:
+    table = instance.table(table_id)
+  except google.api_core.exceptions.NotFound:
+    assert False, f'Given table does not exist in given instance OR service Account `get_current_service_account()` does have the permission to access it'
+  except google.api_core.exceptions.PermissionDenied:
+    assert False, f'Service Account `get_current_service_account()` does not have access permission for given table of given instance'
+
+  entities = []
+  for i, row in enumerate(rows):
+    *_, column_family, column_name, row_key, value = row
+
+    row_bigtable = table.direct_row(row_key.encode('utf-8'))
+
+
+    row_bigtable.set_cell(
+      column_family_id=column_family,
+      column=column_name,
+      value=value.encode('utf-8'),
+      timestamp=datetime.datetime.now()+datetime.timedelta(milliseconds=i)
+    )
+
+    entities.append(row_bigtable)
+
+
+  table.mutate_rows(rows=entities)
+  return ["200 Value successfully exported."] * len(entities)
+requirements:
+  google-cloud-bigtable
