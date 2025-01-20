@@ -1,0 +1,906 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="BigFunction faker is a BigQuery function which Generates fake data">
+      
+      
+      
+        <link rel="canonical" href="https://unytics.io/bigfunctions/bigfunctions/faker/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>faker - BigQuery - BigFunctions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+
+
+<meta property="og:title" content="faker - BigQuery - BigFunctions" />
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:title" content="faker - BigQuery - BigFunctions" />
+
+
+
+<meta property="og:description" content="BigFunction faker is a BigQuery function which Generates fake data" />
+
+
+
+<meta property="og:image" content="https://unytics.io/bigfunctions/assets/logo_and_name.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="2500" />
+<meta property="og:image:height" content="541" />
+<meta property="twitter:image" content="https://unytics.io/bigfunctions/assets/logo_and_name.png" />
+<meta property="twitter:image:alt" content="Supercharge BigQuery with BigFunctions" />
+
+
+
+<script defer data-domain="unytics.io" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
+
+
+<style>
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+      display: none;
+    }
+  }
+span.title {
+  font-weight: bold;
+}
+
+span.em {
+  font-weight: bold;
+}
+
+.separator {
+  border-bottom: 1px solid #e3e8ee;
+}
+
+a.field {
+  font-weight: 600;
+  /* color: #3c4257; */
+  font-size: .8rem;
+}
+
+span.parent-field {
+  font-weight: 600;
+  color:#a3acb9;
+  font-size: .85em;
+}
+
+span.type {
+  color: #8792a2;
+  font-size: .7rem;
+  margin-right: 4px;
+}
+
+span.version {
+  color: #8792a2;
+  font-size: .7rem;
+  float: right;
+}
+
+.md-typeset .admonition.abstract,
+.md-typeset details.abstract {
+  border-color: rgb(43, 155, 70);
+}
+.md-typeset .abstract > .admonition-title,
+.md-typeset .abstract > summary {
+  background-color: var(--md-primary-fg-color);
+}
+.md-typeset .abstract > .admonition-title::before,
+.md-typeset .abstract > summary::before {
+  background-color: var(--md-primary-fg-color);
+  -webkit-mask-image: var(--md-admonition-icon--abstract);
+          mask-image: var(--md-admonition-icon--abstract);
+}
+
+.md-typeset__table {
+   min-width: 100%;
+}
+
+.admonition.note {
+  font-size: .8rem;
+}
+</style>
+
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#faker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <style>
+    .md-banner p {
+        line-height: 2.4!important;
+    }  
+    .md-banner p a {
+        color: var(--md-footer-fg-color--light)!important;
+         margin: 0 10px;
+    }  
+    .md-banner p a:hover {
+        color: white!important;
+    }      
+    .md-banner a svg {
+      max-height: 1.2rem !important;
+    }
+  </style>
+  <p style="text-align: right;">
+
+    <a href="https://github.com/unytics/bigfunctions" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+    </a>
+    
+    <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" target="_blank" rel="noopener" title="join.slack.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"></path></svg>
+    </a>
+  
+    <a href="https://www.linkedin.com/company/unytics/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+    
+  </p>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BigFunctions" class="md-header__button md-logo" aria-label="BigFunctions" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BigFunctions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              faker - BigQuery
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/unytics/bigfunctions" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    unytics/bigfunctions
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+  
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Get Started!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+    
+  
+  Explore BigFunctions!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" class="md-tabs__link">
+        
+  
+    
+  
+  Join Slack!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CONTRIBUTING/" class="md-tabs__link">
+        
+  
+    
+  
+  Contribute!
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+
+  <!-- Hero for landing page -->
+  
+  <!-- END OF Hero for landing page -->
+
+
+
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BigFunctions" class="md-nav__button md-logo" aria-label="BigFunctions" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    BigFunctions
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/unytics/bigfunctions" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    unytics/bigfunctions
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get Started!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Explore BigFunctions!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Join Slack!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contribute!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use cases
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  <!-- Tags -->
+
+
+<!-- Actions -->
+
+  
+  
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it doesn't, the
+  page title (or respectively site name) is used as the main headline.
+-->
+
+
+<!-- Page content -->
+<p><span style="color: silver; position: relative; top: -1rem">
+  <a href=".." style="color: silver">bigfunctions </a> &gt; faker
+</span></p>
+<h1 id="faker">faker<a class="headerlink" href="#faker" title="Permanent link">¶</a></h1>
+<div style="position: relative; top: -4rem; margin-bottom:  -2rem; text-align: right; z-index: 9999;">
+
+  <a href="https://www.linkedin.com/in/shivamsingh012/" title="Author: Shivam Singh" target="_blank">
+    <img src="https://media.licdn.com/dms/image/D4D03AQERv0qwECH0DA/profile-displayphoto-shrink_200_200/0/1675233460732?e=1686182400&v=beta&t=HqngiSx5zd4llZStwf3L0k2T_pE8qvnEj7NguWNJTOo" width="32" style=" border-radius: 50% !important">
+  </a>
+
+  <a href="https://github.com/unytics/bigfunctions/tree/main/bigfunctions/get_data/faker.yaml" title="Edit on GitHub" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#5d6cc0" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+</div>
+
+<details class="note">
+<summary>Call or Deploy <code>faker</code> ?</summary>
+<p><strong>✅ You can call this <code>faker</code> bigfunction directly from your Google Cloud Project</strong> (<em>no install required</em>).</p>
+<ul>
+<li>This <code>faker</code> function is deployed in <code>bigfunctions</code> GCP project in 39 datasets for all of the 39 BigQuery regions. <em>You need to use the dataset in the same region as your datasets (otherwise you may have a function not found error).</em></li>
+<li>Function is public, so it can be called by anyone. Just copy / paste examples below in your BigQuery console. It just works!</li>
+<li>You may prefer to deploy the BigFunction in your own project if you want to build and manage your own catalog of functions --&gt; Read <a href="../../">Getting Started</a>. This is particularly useful if you want to create private functions (for example calling your internal APIs).</li>
+<li>For any question or difficulties, please read <a href="../../">Getting Started</a>.</li>
+<li>Found a bug? Please raise an issue <a href="https://github.com/unytics/bigfunctions/issues/new/choose">here</a></li>
+</ul>
+<p>Public BigFunctions Datasets are like:</p>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Dataset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eu</code></td>
+<td><code>bigfunctions.eu</code></td>
+</tr>
+<tr>
+<td><code>us</code></td>
+<td><code>bigfunctions.us</code></td>
+</tr>
+<tr>
+<td><code>europe-west1</code></td>
+<td><code>bigfunctions.europe_west1</code></td>
+</tr>
+<tr>
+<td><code>asia-east1</code></td>
+<td><code>bigfunctions.asia_east1</code></td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">¶</a></h2>
+<p><strong>Signature</strong></p>
+<div class="highlight"><pre><span></span><code>faker(what, locale)
+</code></pre></div>
+<p><strong>Description</strong></p>
+<p>Generates fake data
+of type <code>what</code> and localized with <code>locale</code> parameter (using <a href="https://faker.readthedocs.io/">faker python library</a>)</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Possible values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>what</code></td>
+<td><code>aba</code>, <code>address</code>, <code>administrative_unit</code>, <code>am_pm</code>, <code>android_platform_token</code>, <code>ascii_company_email</code>, <code>ascii_email</code>, <code>ascii_free_email</code>, <code>ascii_safe_email</code>, <code>bank_country</code>, <code>bban</code>, <code>binary</code>, <code>boolean</code>, <code>bothify</code>, <code>bs</code>, <code>building_number</code>, <code>catch_phrase</code>, <code>century</code>, <code>chrome</code>, <code>city</code>, <code>city_prefix</code>, <code>city_suffix</code>, <code>color</code>, <code>color_name</code>, <code>company</code>, <code>company_email</code>, <code>company_suffix</code>, <code>coordinate</code>, <code>country</code>, <code>country_calling_code</code>, <code>country_code</code>, <code>credit_card_expire</code>, <code>credit_card_full</code>, <code>credit_card_number</code>, <code>credit_card_provider</code>, <code>credit_card_security_code</code>, <code>cryptocurrency</code>, <code>cryptocurrency_code</code>, <code>cryptocurrency_name</code>, <code>csv</code>, <code>currency</code>, <code>currency_code</code>, <code>currency_name</code>, <code>currency_symbol</code>, <code>current_country</code>, <code>current_country_code</code>, <code>date</code>, <code>date_between</code>, <code>date_between_dates</code>, <code>date_object</code>, <code>date_of_birth</code>, <code>date_this_century</code>, <code>date_this_decade</code>, <code>date_this_month</code>, <code>date_this_year</code>, <code>date_time</code>, <code>date_time_ad</code>, <code>date_time_between</code>, <code>date_time_between_dates</code>, <code>date_time_this_century</code>, <code>date_time_this_decade</code>, <code>date_time_this_month</code>, <code>date_time_this_year</code>, <code>day_of_month</code>, <code>day_of_week</code>, <code>dga</code>, <code>domain_name</code>, <code>domain_word</code>, <code>dsv</code>, <code>ean</code>, <code>ean13</code>, <code>ean8</code>, <code>ein</code>, <code>email</code>, <code>emoji</code>, <code>file_extension</code>, <code>file_name</code>, <code>file_path</code>, <code>firefox</code>, <code>first_name</code>, <code>first_name_female</code>, <code>first_name_male</code>, <code>first_name_nonbinary</code>, <code>fixed_width</code>, <code>free_email</code>, <code>free_email_domain</code>, <code>future_date</code>, <code>future_datetime</code>, <code>get_providers</code>, <code>hex_color</code>, <code>hexify</code>, <code>hostname</code>, <code>http_method</code>, <code>iana_id</code>, <code>iban</code>, <code>image_url</code>, <code>internet_explorer</code>, <code>invalid_ssn</code>, <code>ios_platform_token</code>, <code>ipv4</code>, <code>ipv4_network_class</code>, <code>ipv4_private</code>, <code>ipv4_public</code>, <code>ipv6</code>, <code>isbn10</code>, <code>isbn13</code>, <code>iso8601</code>, <code>items</code>, <code>itin</code>, <code>job</code>, <code>json</code>, <code>json_bytes</code>, <code>language_code</code>, <code>language_name</code>, <code>last_name</code>, <code>last_name_female</code>, <code>last_name_male</code>, <code>last_name_nonbinary</code>, <code>latitude</code>, <code>latlng</code>, <code>lexify</code>, <code>license_plate</code>, <code>linux_platform_token</code>, <code>linux_processor</code>, <code>local_latlng</code>, <code>locale</code>, <code>localized_ean</code>, <code>localized_ean13</code>, <code>localized_ean8</code>, <code>location_on_land</code>, <code>longitude</code>, <code>mac_address</code>, <code>mac_platform_token</code>, <code>mac_processor</code>, <code>md5</code>, <code>military_apo</code>, <code>military_dpo</code>, <code>military_ship</code>, <code>military_state</code>, <code>mime_type</code>, <code>month</code>, <code>month_name</code>, <code>msisdn</code>, <code>name</code>, <code>name_female</code>, <code>name_male</code>, <code>name_nonbinary</code>, <code>nic_handle</code>, <code>nic_handles</code>, <code>null_boolean</code>, <code>numerify</code>, <code>opera</code>, <code>paragraph</code>, <code>paragraphs</code>, <code>password</code>, <code>past_date</code>, <code>past_datetime</code>, <code>phone_number</code>, <code>port_number</code>, <code>postalcode</code>, <code>postalcode_in_state</code>, <code>postalcode_plus4</code>, <code>postcode</code>, <code>postcode_in_state</code>, <code>prefix</code>, <code>prefix_female</code>, <code>prefix_male</code>, <code>prefix_nonbinary</code>, <code>pricetag</code>, <code>profile</code>, <code>psv</code>, <code>pybool</code>, <code>pydecimal</code>, <code>pydict</code>, <code>pyfloat</code>, <code>pyint</code>, <code>pyiterable</code>, <code>pylist</code>, <code>pyobject</code>, <code>pyset</code>, <code>pystr</code>, <code>pystr_format</code>, <code>pystruct</code>, <code>pytimezone</code>, <code>pytuple</code>, <code>random_choices</code>, <code>random_digit</code>, <code>random_digit_not_null</code>, <code>random_digit_not_null_or_empty</code>, <code>random_digit_or_empty</code>, <code>random_element</code>, <code>random_elements</code>, <code>random_int</code>, <code>random_letter</code>, <code>random_letters</code>, <code>random_lowercase_letter</code>, <code>random_number</code>, <code>random_sample</code>, <code>random_uppercase_letter</code>, <code>randomize_nb_elements</code>, <code>rgb_color</code>, <code>rgb_css_color</code>, <code>ripe_id</code>, <code>safari</code>, <code>safe_color_name</code>, <code>safe_domain_name</code>, <code>safe_email</code>, <code>safe_hex_color</code>, <code>sbn9</code>, <code>secondary_address</code>, <code>seed_instance</code>, <code>sentence</code>, <code>sentences</code>, <code>sha1</code>, <code>sha256</code>, <code>simple_profile</code>, <code>slug</code>, <code>ssn</code>, <code>state</code>, <code>state_abbr</code>, <code>street_address</code>, <code>street_name</code>, <code>street_suffix</code>, <code>suffix</code>, <code>suffix_female</code>, <code>suffix_male</code>, <code>suffix_nonbinary</code>, <code>swift</code>, <code>swift11</code>, <code>swift8</code>, <code>tar</code>, <code>text</code>, <code>texts</code>, <code>time</code>, <code>time_delta</code>, <code>time_object</code>, <code>time_series</code>, <code>timezone</code>, <code>tld</code>, <code>tsv</code>, <code>unix_device</code>, <code>unix_partition</code>, <code>unix_time</code>, <code>upc_a</code>, <code>upc_e</code>, <code>uri</code>, <code>uri_extension</code>, <code>uri_page</code>, <code>uri_path</code>, <code>url</code>, <code>user_agent</code>, <code>user_name</code>, <code>uuid4</code>, <code>windows_platform_token</code>, <code>word</code>, <code>words</code>, <code>year</code>, <code>zip</code>, <code>zipcode</code>, <code>zipcode_in_state</code>, <code>zipcode_plus4</code></td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td><code>null</code>, <code>ar_AA</code>, <code>ar_AE</code>, <code>ar_BH</code>, <code>ar_EG</code>, <code>ar_JO</code>, <code>ar_PS</code>, <code>ar_SA</code>, <code>az_AZ</code>, <code>bg_BG</code>, <code>bn_BD</code>, <code>bs_BA</code>, <code>cs_CZ</code>, <code>da_DK</code>, <code>de</code>, <code>de_AT</code>, <code>de_CH</code>, <code>de_DE</code>, <code>dk_DK</code>, <code>el_CY</code>, <code>el_GR</code>, <code>en</code>, <code>en_AU</code>, <code>en_CA</code>, <code>en_GB</code>, <code>en_IE</code>, <code>en_IN</code>, <code>en_NZ</code>, <code>en_PH</code>, <code>en_TH</code>, <code>en_US</code>, <code>es</code>, <code>es_AR</code>, <code>es_CA</code>, <code>es_CL</code>, <code>es_CO</code>, <code>es_ES</code>, <code>es_MX</code>, <code>et_EE</code>, <code>fa_IR</code>, <code>fi_FI</code>, <code>fil_PH</code>, <code>fr_BE</code>, <code>fr_CA</code>, <code>fr_CH</code>, <code>fr_FR</code>, <code>fr_QC</code>, <code>ga_IE</code>, <code>he_IL</code>, <code>hi_IN</code>, <code>hr_HR</code>, <code>hu_HU</code>, <code>hy_AM</code>, <code>id_ID</code>, <code>it_CH</code>, <code>it_IT</code>, <code>ja_JP</code>, <code>ka_GE</code>, <code>ko_KR</code>, <code>la</code>, <code>lb_LU</code>, <code>lt_LT</code>, <code>lv_LV</code>, <code>mt_MT</code>, <code>ne_NP</code>, <code>nl_BE</code>, <code>nl_NL</code>, <code>no_NO</code>, <code>or_IN</code>, <code>pl_PL</code>, <code>pt_BR</code>, <code>pt_PT</code>, <code>ro_RO</code>, <code>ru_RU</code>, <code>sk_SK</code>, <code>sl_SI</code>, <code>sq_AL</code>, <code>sv_SE</code>, <code>ta_IN</code>, <code>th</code>, <code>th_TH</code>, <code>tl_PH</code>, <code>tr_TR</code>, <code>tw_GH</code>, <code>uk_UA</code>, <code>vi_VN</code>, <code>zh_CN</code>, <code>zh_TW</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">¶</a></h2>
+<p><strong>1. Generate fake italian name</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">EU</label><label for="__tabbed_1_2">US</label><label for="__tabbed_1_3">europe-west1</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">bigfunctions</span><span class="p">.</span><span class="n">eu</span><span class="p">.</span><span class="n">faker</span><span class="p">(</span><span class="ss">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;it_IT&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">bigfunctions</span><span class="p">.</span><span class="n">us</span><span class="p">.</span><span class="n">faker</span><span class="p">(</span><span class="ss">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;it_IT&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">bigfunctions</span><span class="p">.</span><span class="n">europe_west1</span><span class="p">.</span><span class="n">faker</span><span class="p">(</span><span class="ss">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;it_IT&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<pre style="margin-top: -1rem;">
+<code style="padding-top: 0px; padding-bottom: 0px;">+------------------+
+| fake_data        |
++------------------+
+| Michela Beccaria |
++------------------+
+</code>
+</pre>
+
+<p><strong>2. Generate fake IPv4 address (without specifying locale)</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">EU</label><label for="__tabbed_2_2">US</label><label for="__tabbed_2_3">europe-west1</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">bigfunctions</span><span class="p">.</span><span class="n">eu</span><span class="p">.</span><span class="n">faker</span><span class="p">(</span><span class="ss">&quot;ipv4_private&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">bigfunctions</span><span class="p">.</span><span class="n">us</span><span class="p">.</span><span class="n">faker</span><span class="p">(</span><span class="ss">&quot;ipv4_private&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">bigfunctions</span><span class="p">.</span><span class="n">europe_west1</span><span class="p">.</span><span class="n">faker</span><span class="p">(</span><span class="ss">&quot;ipv4_private&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<pre style="margin-top: -1rem;">
+<code style="padding-top: 0px; padding-bottom: 0px;">+---------------+
+| fake_data     |
++---------------+
+| 10.52.207.187 |
++---------------+
+</code>
+</pre>
+
+<h2 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">¶</a></h2>
+<p>This <code>faker</code> BigQuery function has several practical use cases, primarily centered around generating realistic test data:</p>
+<ol>
+<li>
+<p><strong>Populating Test Databases:</strong> When developing or testing applications that interact with BigQuery, you often need a substantial amount of data to simulate real-world scenarios. Instead of manually creating this data, you can use <code>faker</code> to automatically generate a large volume of realistic fake data for various data types like names, addresses, emails, dates, etc.  This ensures your application is tested under realistic conditions.</p>
+</li>
+<li>
+<p><strong>Data Anonymization and Privacy:</strong> In situations where you need to share data but protect sensitive information, <code>faker</code> can be used to replace real data with plausible fake data. This allows you to maintain the statistical properties of the dataset while preserving individual privacy.  For instance, you could replace real names with fake names, real addresses with fake addresses, and so on.</p>
+</li>
+<li>
+<p><strong>Demonstrations and Mockups:</strong>  When demonstrating a new application or creating mockups, you may not have access to real data. <code>faker</code> provides a quick and easy way to generate realistic data to populate your demos and make them more compelling.</p>
+</li>
+<li>
+<p><strong>Load Testing:</strong> To test the performance of your BigQuery queries and applications under stress, you can use <code>faker</code> to generate large datasets with specific characteristics. This helps you identify potential bottlenecks and optimize your queries for better performance.</p>
+</li>
+<li>
+<p><strong>Training Machine Learning Models:</strong> Some machine learning models require large amounts of data for training. <code>faker</code> can supplement real data or even be used to generate entirely synthetic datasets for training purposes, especially when real data is scarce or expensive to obtain.</p>
+</li>
+<li>
+<p><strong>Data Analysis and Exploration:</strong> When exploring a new dataset or developing new data analysis techniques, <code>faker</code> can be used to generate datasets with known properties. This allows you to test your analysis methods and understand how they perform under different conditions.</p>
+</li>
+</ol>
+<p><strong>Example Scenario:</strong></p>
+<p>Imagine you are developing a new e-commerce application and need to test its reporting features.  You could use <code>faker</code> to generate a dataset of fake customer orders with realistic order dates, product names, prices, shipping addresses, and so on.  This would allow you to thoroughly test your reporting dashboard and ensure it can handle a large volume of data and accurately calculate metrics like sales by region, average order value, and customer lifetime value.</p>
+<p>By leveraging the various data types and locales supported by <code>faker</code>, you can tailor the generated data to your specific needs and create highly realistic test scenarios.</p>
+<!-------------------------------------
+SCRIPT TO HANDLE SECRET ENCRYPTION SNIPPET
+-------------------------------------->
+<script src="https://cdn.jsdelivr.net/npm/node-forge@1.0.0/dist/forge.min.js"></script>
+<script>
+const pem = `
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsgotixwX/WsbKxeT3sef
+z6acpTomZEYOBJzIRLtcHyxzyMEuMN9iYF32l4t6K70b+38mLIO7K6LkZj/nnhrF
+UuPfAKme5R2Y4FqtJVSzplCmZc2/274eanIGi6BZ+kHOoc+eJTOEi3Wzp/EQ77iG
+bC9tD/0ZkXYdXzPHcJT0dOFHIV6wpLr2i251NAIDTI4CV1afqhxU313f5Wrw+pYa
+eUh2/v6KtvmLRQb3P4EUytQF7pBYx8kRGMLvmFja5Gg8Xj3XhXXsdjUkmAYumRDl
+HkUeB62F+TO1oOfTrwBAKRh8WfHJOyfDJyNw1EndZ4bz28ODxth4r+phaaSE+53y
+WQIDAQAB
+-----END PUBLIC KEY-----
+
+`;
+
+const publicKey = forge.pki.publicKeyFromPem(pem);
+
+
+function encrypt() {
+  const plainText = document.getElementById('secret-to-encrypt').value;
+  const authorizedUsers = document.getElementById('authorized-users').value;
+  if (!plainText) {
+    return;
+  }
+  if (!authorizedUsers) {
+    return;
+  }
+  const plainObj = {
+    secret: plainText,
+    authorized_users: authorizedUsers,
+    function: "faker",
+  };
+  const plainObjAsString = JSON.stringify(plainObj);
+  const encrypted = publicKey.encrypt(plainObjAsString, 'RSA-OAEP', {
+    md: forge.md.sha256.create(),
+    mgf1: { md: forge.md.sha256.create() }
+  });
+  const encryptedB64 = forge.util.encode64(encrypted);
+  navigator.clipboard.writeText(`ENCRYPTED_SECRET(${encryptedB64})`);
+  alert("Successfully copied the encrypted secret in clipboard.\n\nPaste it in your query as shown in examples.");
+}
+</script>
+
+<!-- Source file information -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+<!-- Was this page helpful? -->
+
+
+  
+
+
+
+<!-- Comment system -->
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+<!-- Application footer -->
+<footer class="md-footer">
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        <img
+          src="https://unytics.io/bigfunctions/assets/logo_and_name.png"
+          alt=""
+          draggable="false"
+          width="300"
+        >
+        
+          <div class="md-footer-copyright__highlight" style="color: rgb(92, 92, 92);">
+            Copyright &copy; 2024 Unytics
+          </div>
+        
+      </div>
+
+      <!-- Social links -->
+      <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unytics/bigfunctions" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" target="_blank" rel="noopener" title="join.slack.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/unytics/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["tabs", "content.tabs.link", "content.code.copy", "navigation.path", "navigation.tabs", "navigation.tracking", "navigation.indexes", "navigation.hide"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>

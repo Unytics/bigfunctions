@@ -1,0 +1,1208 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="BigFunctions are open-source BigQuery routines that give you SQL-superpowers. BigFunctions can compute advanced transforms such as sentiment score of a text, or send data to any of your favorite SAAS tool. BigFunctions is dbt's best friend.">
+      
+      
+      
+        <link rel="canonical" href="https://unytics.io/bigfunctions/">
+      
+      
+      
+        <link rel="next" href="bigfunctions/">
+      
+      
+      <link rel="icon" href="assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>BigFunctions</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.a40c8224.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+
+
+<meta property="og:title" content="Bigfunctions supercharge BigQuery" />
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bigfunctions supercharge BigQuery" />
+
+
+
+<meta property="og:description" content="BigFunctions are open-source BigQuery routines that give you SQL-superpowers. BigFunctions can compute advanced transforms such as sentiment score of a text, or send data to any of your favorite SAAS tool. BigFunctions is dbt's best friend." />
+
+
+
+<meta property="og:image" content="https://unytics.io/bigfunctions/assets/logo_and_name.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="2500" />
+<meta property="og:image:height" content="541" />
+<meta property="twitter:image" content="https://unytics.io/bigfunctions/assets/logo_and_name.png" />
+<meta property="twitter:image:alt" content="Supercharge BigQuery with BigFunctions" />
+
+
+
+<script defer data-domain="unytics.io" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
+
+
+<style>
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+      display: none;
+    }
+  }
+span.title {
+  font-weight: bold;
+}
+
+span.em {
+  font-weight: bold;
+}
+
+.separator {
+  border-bottom: 1px solid #e3e8ee;
+}
+
+a.field {
+  font-weight: 600;
+  /* color: #3c4257; */
+  font-size: .8rem;
+}
+
+span.parent-field {
+  font-weight: 600;
+  color:#a3acb9;
+  font-size: .85em;
+}
+
+span.type {
+  color: #8792a2;
+  font-size: .7rem;
+  margin-right: 4px;
+}
+
+span.version {
+  color: #8792a2;
+  font-size: .7rem;
+  float: right;
+}
+
+.md-typeset .admonition.abstract,
+.md-typeset details.abstract {
+  border-color: rgb(43, 155, 70);
+}
+.md-typeset .abstract > .admonition-title,
+.md-typeset .abstract > summary {
+  background-color: var(--md-primary-fg-color);
+}
+.md-typeset .abstract > .admonition-title::before,
+.md-typeset .abstract > summary::before {
+  background-color: var(--md-primary-fg-color);
+  -webkit-mask-image: var(--md-admonition-icon--abstract);
+          mask-image: var(--md-admonition-icon--abstract);
+}
+
+.md-typeset__table {
+   min-width: 100%;
+}
+
+.admonition.note {
+  font-size: .8rem;
+}
+</style>
+
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-what-is-bigfunctions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <style>
+    .md-banner p {
+        line-height: 2.4!important;
+    }  
+    .md-banner p a {
+        color: var(--md-footer-fg-color--light)!important;
+         margin: 0 10px;
+    }  
+    .md-banner p a:hover {
+        color: white!important;
+    }      
+    .md-banner a svg {
+      max-height: 1.2rem !important;
+    }
+  </style>
+  <p style="text-align: right;">
+
+    <a href="https://github.com/unytics/bigfunctions" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+    </a>
+    
+    <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" target="_blank" rel="noopener" title="join.slack.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"></path></svg>
+    </a>
+  
+    <a href="https://www.linkedin.com/company/unytics/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+    
+  </p>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="BigFunctions" class="md-header__button md-logo" aria-label="BigFunctions" data-md-component="logo">
+      
+  <img src="assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BigFunctions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Get Started!
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/unytics/bigfunctions" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    unytics/bigfunctions
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+  
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+    
+  
+  Get Started!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="bigfunctions/" class="md-tabs__link">
+        
+  
+    
+  
+  Explore BigFunctions!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" class="md-tabs__link">
+        
+  
+    
+  
+  Join Slack!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="CONTRIBUTING/" class="md-tabs__link">
+        
+  
+    
+  
+  Contribute!
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+
+  <!-- Hero for landing page -->
+  
+
+
+  <!-- Additional styles for landing page -->
+  <style>
+
+
+  /* Get started button */
+  .md-typeset .md-button--primary:hover {
+    color: var(--md-primary-fg-color);
+    background-color: var(--md-primary-bg-color);
+    border-color: var(--md-primary-fg-color);
+  }
+  .md-typeset .md-button--primary {
+    color: var(--md-primary-bg-color);
+    background-color: var(--md-primary-fg-color);
+    border-color: var(--md-primary-bg-color);
+  }
+
+  .tx-hero {
+    max-width: 700px;
+    display: flex;
+    padding: .4rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .tx-hero h1 {
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 46px;
+    color: rgb(38, 38, 38);
+  }
+  .tx-hero p {
+    color: rgb(92, 92, 92);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+  }
+  .tx-hero__image {
+    max-width: 1000px;
+    /*min-width: 600px;*/
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .tx-hero__image img {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+  }
+
+  </style>
+
+  <div class="md-container tx-hero">
+    <div class="md-grid md-typeset">
+      <div class="md-main__inner">
+        <div>
+          <h1>Supercharge <u>BigQuery</u><br>with <u>BigFunctions</u></h1>
+          <p>
+            <b>Upgrade your data impact</b><br>
+            <i>with</i> 100+ ready-to-use BigQuery Functions
+          </p>
+          <p style="margin-bottom: 2rem"><i>(+ build a catalog of functions)</i></p>
+          <a href="bigfunctions/" class="md-button md-button--primary">
+            Try it!
+            <svg width="11" height="10" viewBox="0 0 11 10" fill="none" style="margin-left:2px"><path d="M1 5.16772H9.5M9.5 5.16772L6.5 1.66772M9.5 5.16772L6.5 8.66772" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="md-container">
+    <div class="tx-hero__image">
+      <img
+        src="https://unytics.io/bigfunctions/assets/images/bigfunctions_intro.gif"
+        alt=""
+        draggable="false"
+        style="border: black solid 1rem; width: 100%; margin-top: 5rem;"
+      >
+    </div>
+  </div> -->
+
+  <hr style="margin: 16em 1em 1.5em 1em;  border-bottom: 0.05rem solid var(--md-default-fg-color--lightest); display: flow-root;">
+
+
+  
+  <!-- END OF Hero for landing page -->
+
+
+
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="BigFunctions" class="md-nav__button md-logo" aria-label="BigFunctions" data-md-component="logo">
+      
+  <img src="assets/logo.png" alt="logo">
+
+    </a>
+    BigFunctions
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/unytics/bigfunctions" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    unytics/bigfunctions
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Get Started!
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Get Started!
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-bigfunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍️ 1. What is BigFunctions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-bigfunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 2. Why BigFunctions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-call-public-bigfunctions-without-install-from-your-gcp-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      👀 3. Call public BigFunctions without install from your GCP project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-deploy-bigfunctions-in-your-gcp-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 4. Deploy BigFunctions in your GCP project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-bigfun-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      💥 5. bigfun CLI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💥 5. bigfun CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-install-bigfun" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Install bigfun 🛠️
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-use-bigfun" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Use bigfun 🔥
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-create-you-first-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Create you first function 👷
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-deploy-you-first-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Deploy you first function 👨‍💻
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-deploy-you-first-javascript-function-which-depends-on-npm-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 Deploy you first javascript function which depends on npm packages 👽
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-deploy-you-first-remote-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.6 Deploy you first remote function ⚡️
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❓ 6. FAQ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-contribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      👋 7. Contribute
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bigfunctions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Explore BigFunctions!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Join Slack!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CONTRIBUTING/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contribute!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-bigfunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍️ 1. What is BigFunctions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-bigfunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 2. Why BigFunctions?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-call-public-bigfunctions-without-install-from-your-gcp-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      👀 3. Call public BigFunctions without install from your GCP project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-deploy-bigfunctions-in-your-gcp-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 4. Deploy BigFunctions in your GCP project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-bigfun-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      💥 5. bigfun CLI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💥 5. bigfun CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-install-bigfun" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Install bigfun 🛠️
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-use-bigfun" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Use bigfun 🔥
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-create-you-first-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Create you first function 👷
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-deploy-you-first-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Deploy you first function 👨‍💻
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-deploy-you-first-javascript-function-which-depends-on-npm-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 Deploy you first javascript function which depends on npm packages 👽
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-deploy-you-first-remote-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.6 Deploy you first remote function ⚡️
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❓ 6. FAQ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-contribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      👋 7. Contribute
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  <!-- Tags -->
+
+
+<!-- Actions -->
+
+  
+  
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it doesn't, the
+  page title (or respectively site name) is used as the main headline.
+-->
+
+  <h1>Get Started!</h1>
+
+
+<!-- Page content -->
+<p align="center">
+  <img class="hero-image" src="https://user-images.githubusercontent.com/111615732/186508787-6af04ed0-4750-4c49-926a-eacfd4a3dfbb.png" alt="logo_and_name" style="width: 100%; max-width: 600px">
+</p>
+
+<p align="center">
+    Supercharge <em>BigQuery</em><br>with <em>BigFunctions</em><br><br>
+    <b>Upgrade your data impact</b><br>
+    with 100+ ready-to-use BigQuery Functions<br>
+    <i>(+ build a catalog of functions)</i><br>
+</p>
+
+<p align="center">
+    <strong>❯
+      <a href="https://unytics.io/bigfunctions/" target="_blank">Website</a> |
+      <a href="https://github.com/unytics/bigfunctions" target="_blank">GitHub</a>
+     ❮</strong>
+</p>
+
+<hr />
+<p><br></p>
+<h2 id="1-what-is-bigfunctions">🔍️ 1. What is BigFunctions?<a class="headerlink" href="#1-what-is-bigfunctions" title="Permanent link">¶</a></h2>
+<p>BigFunctions is:</p>
+<p>✅ <strong>a framework</strong> to build a <strong>governed catalog of powerful BigQuery functions</strong> at YOUR company.</p>
+<p>✅ <strong>100+ open-source functions to supercharge BigQuery</strong> that you can call directly (no install) or redeploy in YOUR catalog.</p>
+<p><br></p>
+<h2 id="2-why-bigfunctions">💡 2. Why BigFunctions?<a class="headerlink" href="#2-why-bigfunctions" title="Permanent link">¶</a></h2>
+<p><strong>As a data-analyst</strong><br>
+You'll have new powers! <em>(such as loading data from any source or activating your data through reverse ETL)</em>.</p>
+<p><strong>As an analytics-engineer</strong><br>
+You'll feel at home with BigFunctions style which imitates the one of dbt <em>(with a yaml standard and a CLI)</em>.<br>
+You'll love the idea of getting more things done through SQL.</p>
+<p><strong>As a data-engineer</strong><br>
+You'll easily build software-engineering best practices through unit testing, cicd, pull request validation, continuous deployment, etc.<br>
+You will love avoiding reinventing the wheel by using functions already developed by the community.</p>
+<p><strong>As a central data-team player in a large company</strong><br>
+You'll be proud of providing a governed catalog of curated functions to your 10000+ employees with mutualized and maintainable effort.</p>
+<p><strong>As a security champion</strong><br>
+You will enjoy the ability to validate the code of functions before deployment thanks to your git validation workflow, CI Testing, binary authorization, etc.</p>
+<p><strong>As an open-source lover</strong><br>
+You'll be able to contribute so that a problem solved for you is solved for everyone.</p>
+<p><br></p>
+<h2 id="3-call-public-bigfunctions-without-install-from-your-gcp-project">👀 3. Call public BigFunctions without install from your GCP project<a class="headerlink" href="#3-call-public-bigfunctions-without-install-from-your-gcp-project" title="Permanent link">¶</a></h2>
+<p>All BigFunctions represented by a 'yaml' file in <em>bigfunctions</em> folder of the GitHub repo are automatically deployed in public datasets so that you can call them directly without install from your BigQuery project.</p>
+<p>Give it a try! Execute this SQL query from your GCP Project 👀:</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">bigfunctions</span><span class="p">.</span><span class="n">eu</span><span class="p">.</span><span class="n">faker</span><span class="p">(</span><span class="ss">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;it_IT&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Explore all available bigfunctions <strong><a href="bigfunctions">here</a></strong>.</p>
+<p><br></p>
+<h2 id="4-deploy-bigfunctions-in-your-gcp-project">🚀 4. Deploy BigFunctions in your GCP project<a class="headerlink" href="#4-deploy-bigfunctions-in-your-gcp-project" title="Permanent link">¶</a></h2>
+<p>You can also deploy any bigfunction in your project! To deploy <em>my_bigfunction</em> defined in <em>bigfunctions/my_bigfunction.yaml</em> file, simply call:</p>
+<div class="highlight"><pre><span></span><code>bigfun<span class="w"> </span>deploy<span class="w"> </span>my_bigfunction
+</code></pre></div>
+<p>Details about <code>bigfun</code> command line are given below.</p>
+<p><br></p>
+<h2 id="5-bigfun-cli">💥 5. <code>bigfun</code> CLI<a class="headerlink" href="#5-bigfun-cli" title="Permanent link">¶</a></h2>
+<p><code>bigfun</code> CLI (command-line-interface) facilitates BigFunctions development, test, deployment, documentation and monitoring.</p>
+<h3 id="51-install-bigfun">5.1 Install <code>bigfun</code> 🛠️<a class="headerlink" href="#51-install-bigfun" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>bigfunctions
+</code></pre></div>
+<h3 id="52-use-bigfun">5.2 Use <code>bigfun</code> 🔥<a class="headerlink" href="#52-use-bigfun" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bigfun<span class="w"> </span>--help
+Usage:<span class="w"> </span>bigfun<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
+
+Options:
+<span class="w">  </span>--help<span class="w">  </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
+
+Commands:
+<span class="w">  </span>deploy<span class="w">      </span>Deploy<span class="w"> </span>BIGFUNCTION
+<span class="w">  </span>docs<span class="w">        </span>Generate,<span class="w"> </span>serve<span class="w"> </span>and<span class="w"> </span>publish<span class="w"> </span>documentation
+<span class="w">  </span>get<span class="w">         </span>Download<span class="w"> </span>BIGFUNCTION<span class="w"> </span>yaml<span class="w"> </span>file<span class="w"> </span>from<span class="w"> </span>unytics/bigfunctions...
+<span class="w">  </span><span class="nb">test</span><span class="w">        </span>Test<span class="w"> </span>BIGFUNCTION
+</code></pre></div>
+<h3 id="53-create-you-first-function">5.3 Create you first function 👷<a class="headerlink" href="#53-create-you-first-function" title="Permanent link">¶</a></h3>
+<p>Functions are defined as yaml files under <code>bigfunctions</code> folder. To create your first function locally, the easiest is to download an existing yaml file of unytics/bigfunctions Github repo.</p>
+<p>For instance to download <code>is_email_valid.yaml</code> into bigfunctions folder, do:</p>
+<div class="highlight"><pre><span></span><code>bigfun<span class="w"> </span>get<span class="w"> </span>is_email_valid
+</code></pre></div>
+<p>You can then update the file to suit your needs.</p>
+<h3 id="54-deploy-you-first-function">5.4 Deploy you first function 👨‍💻<a class="headerlink" href="#54-deploy-you-first-function" title="Permanent link">¶</a></h3>
+<blockquote>
+<ol>
+<li>Make sure the <code>gcloud</code> command is <a href="https://cloud.google.com/sdk/docs/install">installed on your computer</a></li>
+<li>Activate the application-default account with <code>gcloud auth application-default login</code>. A browser window should open, and you should be prompted to log into your Google account. Once you've done that, <code>bigfun</code> will use your oauth'd credentials to connect to BigQuery through BigQuery python client!</li>
+<li>Get or create a <code>DATASET</code> where you have permission to edit data and where the function will be deployed.</li>
+<li>The <code>DATASET</code> must belong to a <code>PROJECT</code> in which you have permission to run BigQuery queries.</li>
+</ol>
+</blockquote>
+<p>You now can deploy the function <code>is_email_valid</code> defined in <code>bigfunctions/is_email_valid.yaml</code> yaml file by running:</p>
+<div class="highlight"><pre><span></span><code>bigfun<span class="w"> </span>deploy<span class="w"> </span>is_email_valid
+</code></pre></div>
+<blockquote>
+<p>The first time you run this command it will ask for <code>PROJECT</code> and <code>DATASET</code>.</p>
+<p>Your inputs will be written to <code>config.yaml</code> file in current directory so that you won't be asked again (unless you delete the entries in <code>config.yaml</code>). You can also override this config at deploy time: <code>bigfun deploy is_email_valid --project=PROJECT --dataset=DATASET</code>.</p>
+</blockquote>
+<p>Test it with 👀:</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">PROJECT</span><span class="p">.</span><span class="n">DATASET</span><span class="p">.</span><span class="n">is_email_valid</span><span class="p">(</span><span class="s1">&#39;paul.marcombes@unytics.io&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="55-deploy-you-first-javascript-function-which-depends-on-npm-packages">5.5 Deploy you first javascript function which depends on <em>npm packages</em> 👽<a class="headerlink" href="#55-deploy-you-first-javascript-function-which-depends-on-npm-packages" title="Permanent link">¶</a></h3>
+<p><em>To deploy a </em><em>javascript</em><em> function</em> which depends on <strong>npm packages</strong> there are additional requirements <em>in addition to the ones above</em>.</p>
+<blockquote>
+<ol>
+<li>You will need to install each <em>npm package</em> on your machine and bundle it into one file. For that, you need to <a href="https://nodejs.org/en/download/">install <em>nodejs</em></a>.</li>
+<li>The bundled js file will be uploaded into a cloud storage bucket in which you must have write access. The bucket name must be provided in <code>config.yaml</code> file in a variable named <code>bucket_js_dependencies</code>. Users of your functions must have read access to the bucket.</li>
+</ol>
+</blockquote>
+<p>You now can deploy the function <code>render_template</code> defined in <code>bigfunctions/render_template.yaml</code> yaml file by running:</p>
+<div class="highlight"><pre><span></span><code>bigfun<span class="w"> </span>deploy<span class="w"> </span>render_template
+</code></pre></div>
+<p>Test it with 👀:</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">PROJECT</span><span class="p">.</span><span class="n">DATASET</span><span class="p">.</span><span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;Hello {{ user }}&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="s1">&#39;{&quot;user&quot;: &quot;James&quot;}&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="56-deploy-you-first-remote-function">5.6 Deploy you first <em>remote</em> function ⚡️<a class="headerlink" href="#56-deploy-you-first-remote-function" title="Permanent link">¶</a></h3>
+<p><em>To deploy a </em><em>remote</em><em> function</em> (e.g. python function), there are additional requirements <em>in addition to the ones of </em><em>Deploy you first function</em><em> section</em>.</p>
+<blockquote>
+<ol>
+<li>A <em>Cloud Run</em> service will be deployed to host the code (<a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/remote-functions">as seen here</a>). So you must have <a href="https://cloud.google.com/run/docs/deploying-source-code#permissions_required_to_deploy">permissions to deploy a <em>Cloud Run</em> service</a> in your project <code>PROJECT</code>.</li>
+<li><code>gcloud</code> CLI will be used directly to deploy the service (using <code>gcloud run deploy</code>). Then, make sure you are logged in with <code>gcloud</code> by calling: <code>gcloud auth login</code>. A browser window should also open, and you should be prompted to log into your Google account. WARNING: you read correctly: you have to authenticate twice. Once for bigquery python client (to deploy any function including remote as seen above.) and once now to use <code>gcloud</code> (to deploy a <em>Cloud Run</em> service).</li>
+<li>A <em>BigQuery Remote Connection</em> will be created to link BigQuery with the <em>Cloud Run</em> service. You then should have permissions to create a remote connection. <em><a href="https://cloud.google.com/bigquery/docs/access-control#bigquery.connectionAdmin">BigQuery Connection Admin</a></em> or <em><a href="https://cloud.google.com/bigquery/docs/access-control#bigquery.admin">BigQuery Admin</a></em> roles have these permissions.</li>
+<li>A service account will be automatically created by Google along with the <em>BigQuery Remote Connection</em>. BigQuery will use this service account of the remote connection to invoke the <em>Cloud Run</em> service. You then must have the permission to authorize this service account to invoke the <em>Cloud Run</em> service. This permission is provided in the role <em><a href="https://cloud.google.com/run/docs/reference/iam/roles">roles/run.admin</a></em></li>
+</ol>
+</blockquote>
+<p>You now can deploy the function <code>faker</code> defined in <code>bigfunctions/faker.yaml</code> yaml file by running:</p>
+<div class="highlight"><pre><span></span><code>bigfun<span class="w"> </span>deploy<span class="w"> </span>faker
+</code></pre></div>
+<p>Test it with 👀:</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">PROJECT</span><span class="p">.</span><span class="n">DATASET</span><span class="p">.</span><span class="n">faker</span><span class="p">(</span><span class="ss">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;it_IT&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><br></p>
+<h2 id="6-faq">❓ 6. FAQ<a class="headerlink" href="#6-faq" title="Permanent link">¶</a></h2>
+<details>
+  <summary><strong>How to define specific parameters for cloud run of python functions?</strong></summary>
+
+  In yaml files you can add a `cloud_run` field with cloud run parameters. Any argument of <a href="https://cloud.google.com/sdk/gcloud/reference/run/deploy">'cloud run deploy' command</a> can be put under `cloud_run` field.
+
+  You can see an example <a href="https://github.com/unytics/bigfunctions/blob/main/bigfunctions/get_data/load_api_data_into_temp_dataset.yaml#L339">here</a>.
+
+  You can also put the same config in your `config.yaml` file to define default values (useful for defining a default service account for functions). The arguments defined in `config.yaml` will be overriden by the arguments (if defined) defined in the function yaml files.
+</details>
+<details>
+  <summary><strong>How to change the cloud run service account for python functions?</strong></summary>
+
+  By default, your default compute service account is used when deploying cloud run. To change that, see the previous FAQ item which show how to define specific parameters for cloud run.
+</details>
+<details>
+  <summary><strong>How to correctly highlight <code>sql</code>, <code>python</code> and <code>javascript</code> code in yaml files?</strong></summary>
+
+  In yaml files multiline string are by default highlighted as strings. That makes reading <code>code</code> field hard to read (with all code in the same string color). To correctly highlight the code regarding its python / javascript / sql syntax, you can install <a href="https://marketplace.visualstudio.com/items?itemName=harrydowning.yaml-embedded-languages">YAML Embedded Languages</a> VSCode extension.
+</details>
+
+<p><br></p>
+<h2 id="7-contribute">👋 7. Contribute<a class="headerlink" href="#7-contribute" title="Permanent link">¶</a></h2>
+<p>BigFunctions is fully open-source. Any contribution is more than welcome 🤗!</p>
+<ul>
+<li>Add a ⭐ on the repo to show your support</li>
+<li><a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q">Join our Slack</a> and talk with us</li>
+<li>Suggest a new function <a href="https://github.com/unytics/bigfunctions/issues/new?assignees=&amp;labels=new-bigfunction&amp;projects=&amp;template=0_new_bigfunction.yaml&amp;title=%5Bnew%5D%3A+%60function_name%28argument1%2C+argument2%29%60">here</a></li>
+<li>Raise an issue <a href="https://github.com/unytics/bigfunctions/issues/new/choose">there</a></li>
+<li>Open a Pull-Request! (See <a href="https://github.com/unytics/bigfunctions/blob/main/CONTRIBUTING.md">contributing instructions</a>).</li>
+</ul>
+<p><br></p>
+<p><strong>Contributors</strong></p>
+<p><a href="https://github.com/unytics/bigfunctions/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=unytics/bigfunctions" />
+</a></p>
+
+<!-- Source file information -->
+
+
+
+
+
+
+
+
+
+<!-- Was this page helpful? -->
+
+
+
+
+<!-- Comment system -->
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+<!-- Application footer -->
+<footer class="md-footer">
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        <img
+          src="https://unytics.io/bigfunctions/assets/logo_and_name.png"
+          alt=""
+          draggable="false"
+          width="300"
+        >
+        
+          <div class="md-footer-copyright__highlight" style="color: rgb(92, 92, 92);">
+            Copyright &copy; 2024 Unytics
+          </div>
+        
+      </div>
+
+      <!-- Social links -->
+      <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unytics/bigfunctions" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" target="_blank" rel="noopener" title="join.slack.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/unytics/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["tabs", "content.tabs.link", "content.code.copy", "navigation.path", "navigation.tabs", "navigation.tracking", "navigation.indexes", "navigation.hide"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>

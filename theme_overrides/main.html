@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+
+
+{% block extrahead %}
+
+{% if page and page.meta and page.meta.title %}
+<meta property="og:title" content="{{ page.meta.title }} - {{ config.site_name }}" />
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:title" content="{{ page.meta.title }} - {{ config.site_name }}" />
+{% else %}
+<meta property="og:title" content="Bigfunctions supercharge BigQuery" />
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bigfunctions supercharge BigQuery" />
+{% endif %}
+
+{% if page and page.meta and page.meta.description %}
+<meta property="og:description" content="{{ page.meta.description }}" />
+{% elif config.site_description %}
+<meta property="og:description" content="{{ config.site_description }}" />
+{% endif %}
+
+{% if page and page.meta and page.meta.image_url %}
+<meta property="og:image" content="{{ page.meta.image_url }}" />
+<meta property="og:image:type" content="{{ page.meta.image_type }}" />
+<meta property="og:image:width" content="{{ page.meta.image_width }}" />
+<meta property="og:image:height" content="{{ page.meta.image_height }}" />
+<meta property="twitter:image" content="{{ page.meta.image_url }}" />
+<meta property="twitter:image:alt" content="{{ page.meta.image_alt }}" />
+{% else %}
+<meta property="og:image" content="https://unytics.io/bigfunctions/assets/logo_and_name.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="2500" />
+<meta property="og:image:height" content="541" />
+<meta property="twitter:image" content="https://unytics.io/bigfunctions/assets/logo_and_name.png" />
+<meta property="twitter:image:alt" content="Supercharge BigQuery with BigFunctions" />
+{% endif %}
+
+{% if config.site_url and config.site_url == 'https://unytics.io/bigfunctions/' %}
+<script defer data-domain="unytics.io" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+{% endif %}
+
+
+<style>
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+      display: none;
+    }
+  }
+span.title {
+  font-weight: bold;
+}
+
+span.em {
+  font-weight: bold;
+}
+
+.separator {
+  border-bottom: 1px solid #e3e8ee;
+}
+
+a.field {
+  font-weight: 600;
+  /* color: #3c4257; */
+  font-size: .8rem;
+}
+
+span.parent-field {
+  font-weight: 600;
+  color:#a3acb9;
+  font-size: .85em;
+}
+
+span.type {
+  color: #8792a2;
+  font-size: .7rem;
+  margin-right: 4px;
+}
+
+span.version {
+  color: #8792a2;
+  font-size: .7rem;
+  float: right;
+}
+
+.md-typeset .admonition.abstract,
+.md-typeset details.abstract {
+  border-color: rgb(43, 155, 70);
+}
+.md-typeset .abstract > .admonition-title,
+.md-typeset .abstract > summary {
+  background-color: var(--md-primary-fg-color);
+}
+.md-typeset .abstract > .admonition-title::before,
+.md-typeset .abstract > summary::before {
+  background-color: var(--md-primary-fg-color);
+  -webkit-mask-image: var(--md-admonition-icon--abstract);
+          mask-image: var(--md-admonition-icon--abstract);
+}
+
+.md-typeset__table {
+   min-width: 100%;
+}
+
+.admonition.note {
+  font-size: .8rem;
+}
+</style>
+
+{% endblock %}
+
+
+{% block announce %}
+  <style>
+    .md-banner p {
+        line-height: 2.4!important;
+    }  
+    .md-banner p a {
+        color: var(--md-footer-fg-color--light)!important;
+         margin: 0 10px;
+    }  
+    .md-banner p a:hover {
+        color: white!important;
+    }      
+    .md-banner a svg {
+      max-height: 1.2rem !important;
+    }
+  </style>
+  <p style="text-align: right;">
+
+    <a href="https://github.com/unytics/bigfunctions" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+    </a>
+    
+    <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" target="_blank" rel="noopener" title="join.slack.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"></path></svg>
+    </a>
+  
+    <a href="https://www.linkedin.com/company/unytics/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+    
+  </p>
+{% endblock %}
+
+
+<!-- Render hero under tabs -->
+{% block tabs %}
+  {{ super() }}
+
+  <!-- Hero for landing page -->
+  {% if page and page.file and page.file.url == './' %}
+
+
+  <!-- Additional styles for landing page -->
+  <style>
+
+
+  /* Get started button */
+  .md-typeset .md-button--primary:hover {
+    color: var(--md-primary-fg-color);
+    background-color: var(--md-primary-bg-color);
+    border-color: var(--md-primary-fg-color);
+  }
+  .md-typeset .md-button--primary {
+    color: var(--md-primary-bg-color);
+    background-color: var(--md-primary-fg-color);
+    border-color: var(--md-primary-bg-color);
+  }
+
+  .tx-hero {
+    max-width: 700px;
+    display: flex;
+    padding: .4rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .tx-hero h1 {
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 46px;
+    color: rgb(38, 38, 38);
+  }
+  .tx-hero p {
+    color: rgb(92, 92, 92);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+  }
+  .tx-hero__image {
+    max-width: 1000px;
+    /*min-width: 600px;*/
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .tx-hero__image img {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+  }
+
+  </style>
+
+  <div class="md-container tx-hero">
+    <div class="md-grid md-typeset">
+      <div class="md-main__inner">
+        <div>
+          <h1>Supercharge <u>BigQuery</u><br>with <u>BigFunctions</u></h1>
+          <p>
+            <b>Upgrade your data impact</b><br>
+            <i>with</i> 100+ ready-to-use BigQuery Functions
+          </p>
+          <p style="margin-bottom: 2rem"><i>(+ build a catalog of functions)</i></p>
+          <a href="bigfunctions/" class="md-button md-button--primary">
+            Try it!
+            <svg width="11" height="10" viewBox="0 0 11 10" fill="none" style="margin-left:2px"><path d="M1 5.16772H9.5M9.5 5.16772L6.5 1.66772M9.5 5.16772L6.5 8.66772" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="md-container">
+    <div class="tx-hero__image">
+      <img
+        src="{{config.site_url}}assets/images/bigfunctions_intro.gif"
+        alt=""
+        draggable="false"
+        style="border: black solid 1rem; width: 100%; margin-top: 5rem;"
+      >
+    </div>
+  </div> -->
+
+  <hr style="margin: 16em 1em 1.5em 1em;  border-bottom: 0.05rem solid var(--md-default-fg-color--lightest); display: flow-root;">
+
+
+  {% endif %}
+  <!-- END OF Hero for landing page -->
+
+
+{% endblock %}

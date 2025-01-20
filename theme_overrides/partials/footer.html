@@ -1,0 +1,28 @@
+{% import "partials/language.html" as lang with context %}
+
+<!-- Application footer -->
+<footer class="md-footer">
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        <img
+          src="{{config.site_url}}assets/logo_and_name.png"
+          alt=""
+          draggable="false"
+          width="300"
+        >
+        {% if config.copyright %}
+          <div class="md-footer-copyright__highlight" style="color: rgb(92, 92, 92);">
+            {{ config.copyright }}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Social links -->
+      {% include "partials/social.html" %}
+    </div>
+  </div>
+</footer>

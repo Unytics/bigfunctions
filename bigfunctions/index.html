@@ -1,0 +1,1262 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Catalog of open-source BigFunctions">
+      
+      
+      
+        <link rel="canonical" href="https://unytics.io/bigfunctions/bigfunctions/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../CONTRIBUTING/">
+      
+      
+      <link rel="icon" href="../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>Explore BigFunctions! - BigFunctions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.a40c8224.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+
+
+<meta property="og:title" content="Bigfunctions supercharge BigQuery" />
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bigfunctions supercharge BigQuery" />
+
+
+
+<meta property="og:description" content="Catalog of open-source BigFunctions" />
+
+
+
+<meta property="og:image" content="https://unytics.io/bigfunctions/assets/logo_and_name.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="2500" />
+<meta property="og:image:height" content="541" />
+<meta property="twitter:image" content="https://unytics.io/bigfunctions/assets/logo_and_name.png" />
+<meta property="twitter:image:alt" content="Supercharge BigQuery with BigFunctions" />
+
+
+
+<script defer data-domain="unytics.io" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
+
+
+<style>
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+      display: none;
+    }
+  }
+span.title {
+  font-weight: bold;
+}
+
+span.em {
+  font-weight: bold;
+}
+
+.separator {
+  border-bottom: 1px solid #e3e8ee;
+}
+
+a.field {
+  font-weight: 600;
+  /* color: #3c4257; */
+  font-size: .8rem;
+}
+
+span.parent-field {
+  font-weight: 600;
+  color:#a3acb9;
+  font-size: .85em;
+}
+
+span.type {
+  color: #8792a2;
+  font-size: .7rem;
+  margin-right: 4px;
+}
+
+span.version {
+  color: #8792a2;
+  font-size: .7rem;
+  float: right;
+}
+
+.md-typeset .admonition.abstract,
+.md-typeset details.abstract {
+  border-color: rgb(43, 155, 70);
+}
+.md-typeset .abstract > .admonition-title,
+.md-typeset .abstract > summary {
+  background-color: var(--md-primary-fg-color);
+}
+.md-typeset .abstract > .admonition-title::before,
+.md-typeset .abstract > summary::before {
+  background-color: var(--md-primary-fg-color);
+  -webkit-mask-image: var(--md-admonition-icon--abstract);
+          mask-image: var(--md-admonition-icon--abstract);
+}
+
+.md-typeset__table {
+   min-width: 100%;
+}
+
+.admonition.note {
+  font-size: .8rem;
+}
+</style>
+
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bigfunctions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <style>
+    .md-banner p {
+        line-height: 2.4!important;
+    }  
+    .md-banner p a {
+        color: var(--md-footer-fg-color--light)!important;
+         margin: 0 10px;
+    }  
+    .md-banner p a:hover {
+        color: white!important;
+    }      
+    .md-banner a svg {
+      max-height: 1.2rem !important;
+    }
+  </style>
+  <p style="text-align: right;">
+
+    <a href="https://github.com/unytics/bigfunctions" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+    </a>
+    
+    <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" target="_blank" rel="noopener" title="join.slack.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"></path></svg>
+    </a>
+  
+    <a href="https://www.linkedin.com/company/unytics/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+    
+  </p>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BigFunctions" class="md-header__button md-logo" aria-label="BigFunctions" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BigFunctions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Explore BigFunctions!
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/unytics/bigfunctions" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    unytics/bigfunctions
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+  
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Get Started!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Explore BigFunctions!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" class="md-tabs__link">
+        
+  
+    
+  
+  Join Slack!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../CONTRIBUTING/" class="md-tabs__link">
+        
+  
+    
+  
+  Contribute!
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+
+  <!-- Hero for landing page -->
+  
+  <!-- END OF Hero for landing page -->
+
+
+
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BigFunctions" class="md-nav__button md-logo" aria-label="BigFunctions" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    BigFunctions
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/unytics/bigfunctions" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    unytics/bigfunctions
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get Started!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Explore BigFunctions!
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Explore BigFunctions!
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 AI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notify" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 Notify
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛢 Get Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Export
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ga4" class="md-nav__link">
+    <span class="md-ellipsis">
+      📶 GA4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trigger-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      💨 Trigger Event
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-transform-numeric" class="md-nav__link">
+    <span class="md-ellipsis">
+      1️⃣ Transform Numeric
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ Transform String
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform-geo-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Transform Geo Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      📆 Transform Date
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      {...} Transform Json
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      [...] Transform Array
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Machine Learning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Graph
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-data-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔨 Convert Data Format
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explore" class="md-nav__link">
+    <span class="md-ellipsis">
+      👀 Explore
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utils" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔨 Utils
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Join Slack!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contribute!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 AI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notify" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 Notify
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛢 Get Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Export
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ga4" class="md-nav__link">
+    <span class="md-ellipsis">
+      📶 GA4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trigger-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      💨 Trigger Event
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-transform-numeric" class="md-nav__link">
+    <span class="md-ellipsis">
+      1️⃣ Transform Numeric
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ Transform String
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform-geo-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Transform Geo Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      📆 Transform Date
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      {...} Transform Json
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      [...] Transform Array
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Machine Learning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Graph
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-data-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔨 Convert Data Format
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explore" class="md-nav__link">
+    <span class="md-ellipsis">
+      👀 Explore
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utils" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔨 Utils
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  <!-- Tags -->
+
+
+<!-- Actions -->
+
+  
+  
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it doesn't, the
+  page title (or respectively site name) is used as the main headline.
+-->
+
+
+<!-- Page content -->
+<h1 id="bigfunctions">BigFunctions<a class="headerlink" href="#bigfunctions" title="Permanent link">¶</a></h1>
+<p>BigFunctions are open-source BigQuery routines that give you <strong>SQL-superpowers</strong> in BigQuery 💪.</p>
+<div class="admonition note">
+<p><strong>✅ You can call ANY of the following public BigFunctions from your Google Cloud Project</strong> (<em>no install</em>).</p>
+<ul>
+<li>The functions are deployed in <code>bigfunctions</code> GCP project in 39 datasets for all of the 39 BigQuery regions.</li>
+<li>They are public, so they can be called by anyone.</li>
+<li>For any question or difficulties, please read <a href="../">Getting Started</a>.</li>
+<li>If you prefer to deploy the BigFunction in your own project, read <a href="../">Getting Started</a>.</li>
+<li>Found a bug? Please raise an issue <a href="https://github.com/unytics/bigfunctions/issues/new/choose">here</a></li>
+</ul>
+</div>
+<details class="info">
+<summary>All BigFunctions Datasets &gt;</summary>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Dataset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{% for dataset in dataset.split(',') -%}</td>
+<td></td>
+</tr>
+<tr>
+<td><code>{{ dataset.replace('_', '-') }}</code></td>
+<td><code>{{ project }}.{{ dataset }}</code></td>
+</tr>
+<tr>
+<td>{% endfor %}</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2 id="ai">🧠 AI<a class="headerlink" href="#ai" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="ask_ai/"><code>ask_ai(prompt, model)</code></a>: Ask Anything!</li>
+<li><a href="ask_appstore_reviews/"><code>ask_appstore_reviews(prompt, app_url_in_appstore)</code></a>: Ask AI what your app users think.</li>
+<li><a href="ask_my_data/"><code>ask_my_data(question, fully_qualified_table)</code></a>: Ask your data any <code>question</code> in natural language.</li>
+<li><a href="categorize/"><code>categorize(items)</code></a>: Categorize <code>items</code> in categories and subcategories.</li>
+<li><a href="classify_text/"><code>classify_text(text, candidate_labels)</code></a>: Classify <code>text</code> among <code>candidate_labels</code></li>
+<li><a href="generate_categories/"><code>generate_categories(items)</code></a>: Return <code>categories</code> of <code>items</code>.</li>
+<li><a href="generate_face_embedding/"><code>generate_face_embedding(image_url)</code></a>: Detect Face on image and Generate its Embedding</li>
+<li><a href="generate_sql/"><code>generate_sql(question, fully_qualified_table)</code></a>: Transform <code>question</code> to a SQL query.</li>
+</ul>
+<h2 id="notify">💬 Notify<a class="headerlink" href="#notify" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="send_google_chat_message/"><code>send_google_chat_message(message, webhook_url)</code></a>: Sends <code>message</code> to google chat space</li>
+<li><a href="send_mail/"><code>send_mail(to, subject, content, attachment_filename, attachment_content)</code></a>: Sends an email</li>
+<li><a href="send_mail_with_excel/"><code>send_mail_with_excel(to, subject, content, excel_filename, table_or_view_or_query)</code></a>: Sends an email with <code>table_or_view_or_query</code> data attached as excel file</li>
+<li><a href="send_mail_with_gmail/"><code>send_mail_with_gmail(gmail_email, gmail_app_password, to, subject, content, attachments)</code></a>: Sends an email using your gmail account</li>
+<li><a href="send_mail_with_sendgrid/"><code>send_mail_with_sendgrid(gmail_email, gmail_app_password, to, subject, content, attachments)</code></a>: Sends an email using your gmail account</li>
+<li><a href="send_slack_message/"><code>send_slack_message(message, webhook_url)</code></a>: Sends <code>message</code> to a slack channel.</li>
+<li><a href="send_sms/"><code>send_sms(message, phone_number)</code></a>: Sends <code>message</code> via SMS to <code>phone_number</code></li>
+<li><a href="send_teams_message/"><code>send_teams_message(message, webhook_url)</code></a>: Sends <code>message</code> to a Microsoft Teams channel.</li>
+</ul>
+<h2 id="get-data">🛢 Get Data<a class="headerlink" href="#get-data" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="exchange_rate/"><code>exchange_rate(base, to)</code></a>: Get <code>exchange_rate</code></li>
+<li><a href="faker/"><code>faker(what, locale)</code></a>: Generates fake data</li>
+<li><a href="get/"><code>get(url, headers)</code></a>: Request <code>url</code></li>
+<li><a href="get_appstore_reviews/"><code>get_appstore_reviews(url)</code></a>: GET Apple App Store Reviews of an app</li>
+<li><a href="get_github_data/"><code>get_github_data(public_repo, destination_dataset, streams)</code></a>: Get data from <code>public_repo</code> into <code>destination_dataset</code></li>
+<li><a href="get_google_trends/"><code>get_google_trends(keywords, category, timeframe, geo, gprop)</code></a>: GET Google Trends data</li>
+<li><a href="get_json/"><code>get_json(url, headers)</code></a>: GET json <code>data</code> from <code>url</code></li>
+<li><a href="get_meteo/"><code>get_meteo(latitude, longitude, date)</code></a>: Get <code>meteo</code></li>
+<li><a href="get_playstore_reviews/"><code>get_playstore_reviews(app_id, country, language)</code></a>: GET Google Play Store Reviews of an app</li>
+<li><a href="get_transport_emissions/"><code>get_transport_emissions(distance_km)</code></a>: Get the transport CO2 emissions given the <code>distance_km</code></li>
+<li><a href="get_webpage_data/"><code>get_webpage_data(prompt, url)</code></a>: Extract <code>data</code> from <code>url</code> using <code>prompt</code></li>
+<li><a href="get_webpage_metadata/"><code>get_webpage_metadata(url)</code></a>: Get webpage metadata</li>
+<li><a href="get_webpage_structured_data/"><code>get_webpage_structured_data(url)</code></a>: Get webpage Structured Data</li>
+<li><a href="list_public_datasets/"><code>list_public_datasets()</code></a>: Returns list of BigQuery <code>public_datasets</code></li>
+<li><a href="load_api_data/"><code>load_api_data(source, source_config, streams, destination_dataset)</code></a>: Load data from 250+ sources using <a href="https://docs.airbyte.com/using-airbyte/pyairbyte/getting-started#available-connectors">Airbyte Python Connectors</a></li>
+<li><a href="load_api_data_into_temp_dataset/"><code>load_api_data_into_temp_dataset(source, source_config, streams, state)</code></a>: Load data from 250+ sources using <a href="https://docs.airbyte.com/using-airbyte/pyairbyte/getting-started#available-connectors">Airbyte Python Connectors</a></li>
+<li><a href="load_duckdb_database/"><code>load_duckdb_database(duckdb_file_url, destination_dataset)</code></a>: Download duckdb database into <code>destination_dataset</code></li>
+<li><a href="load_duckdb_database_into_temp_dataset/"><code>load_duckdb_database_into_temp_dataset(duckdb_file_url)</code></a>: Download duckdb database into a temp dataset</li>
+<li><a href="load_file/"><code>load_file(url, file_type, destination_table, options)</code></a>: Download web file into <code>destination_table</code></li>
+<li><a href="load_file_into_temp_dataset/"><code>load_file_into_temp_dataset(url, file_type, options)</code></a>: Download web file into a temp dataset</li>
+</ul>
+<h2 id="export">🚀 Export<a class="headerlink" href="#export" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="export_table_to_datastore/"><code>export_table_to_datastore(fully_qualified_table, key_column, datastore_path)</code></a>: Export <code>fully_qualified_table</code> to datastore</li>
+<li><a href="export_to_datastore/"><code>export_to_datastore(datastore_path, key, data)</code></a>: Exports <code>data</code> to Datastore</li>
+<li><a href="export_to_pubsub/"><code>export_to_pubsub(project, topic, data, attributes)</code></a>: Exports <code>data</code> and <code>attributes</code> to Pub/Sub <code>topic</code>.</li>
+<li><a href="post/"><code>post(url, data, headers)</code></a>: POST <code>data</code> to <code>url</code>.</li>
+<li><a href="upload_table_to_gsheet/"><code>upload_table_to_gsheet(table_or_view_or_query, max_rows, spreadsheet_url, worksheet_name, write_mode)</code></a>: Upload data from <code>table_or_view_or_query</code> to Google Sheet</li>
+<li><a href="upload_to_gsheet/"><code>upload_to_gsheet(data, spreadsheet_url, worksheet_name, write_mode)</code></a>: Upload <code>data</code> (a json array of objects) to a Google Sheet</li>
+</ul>
+<h2 id="ga4">📶 GA4<a class="headerlink" href="#ga4" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="create_ga4_views/"><code>create_ga4_views(ga4_dataset, destination_dataset)</code></a>: Create views to help querying GA4 Data</li>
+</ul>
+<h2 id="trigger-event">💨 Trigger Event<a class="headerlink" href="#trigger-event" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="refresh_powerbi/"><code>refresh_powerbi(dataset_id, workspace_id, tenant_id, app_id, token_secret, custom_refresh_param)</code></a>: Refresh a Power BI dataset (semantic model)</li>
+<li><a href="refresh_tableau/"><code>refresh_tableau(workbook_or_datasource_title, site, server, token_name, token_secret)</code></a>: Refresh a tableau datasource or workbook</li>
+</ul>
+<h2 id="1-transform-numeric">1️⃣ Transform Numeric<a class="headerlink" href="#1-transform-numeric" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="format_percentage/"><code>format_percentage(first_number, second_number, nb_decimals)</code></a>: Return <code>first_number / second_number</code> as a formatted percentage</li>
+<li><a href="nps/"><code>nps(rating)</code></a>: Returns the NPS (Net Promoter Score)</li>
+<li><a href="quantize_into_bins/"><code>quantize_into_bins(value, bin_bounds)</code></a>: Get the <code>bin_range</code> in which belongs <code>value</code></li>
+<li><a href="quantize_into_bins_with_labels/"><code>quantize_into_bins_with_labels(value, bin_bounds, labels)</code></a>: Get the <code>label</code> of the bin in which belongs <code>value</code></li>
+<li><a href="quantize_into_fixed_width_bins/"><code>quantize_into_fixed_width_bins(value, min_bound, max_bound, nb_bins)</code></a>: Get the <code>bin_range</code> in which belongs <code>value</code></li>
+<li><a href="weighted_average/"><code>weighted_average(element, weight)</code></a>: Returns the weigthed average elements.</li>
+</ul>
+<h2 id="transform-string">✨ Transform String<a class="headerlink" href="#transform-string" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="camel2snake/"><code>camel2snake(camelCaseString)</code></a>: Convert <code>string</code> from camelCase to snake_case</li>
+<li><a href="convert_non_ascii_characters_to_unicode_escape_sequences/"><code>convert_non_ascii_characters_to_unicode_escape_sequences(text)</code></a>: Replace all non ASCII characters with escape unicode</li>
+<li><a href="deidentify/"><code>deidentify(text, info_types)</code></a>: Masks sensitive information of type <code>info_types</code> in <code>text</code></li>
+<li><a href="detect_language/"><code>detect_language(text)</code></a>: Detects <code>text</code> language</li>
+<li><a href="detect_sensitive_info/"><code>detect_sensitive_info(text)</code></a>: Detect sensitive information in <code>text</code></li>
+<li><a href="ip2asn/"><code>ip2asn(ip)</code></a>: Get <code>asn</code> of <code>ip</code></li>
+<li><a href="ip2continent/"><code>ip2continent(ip)</code></a>: Get <code>continent_code</code> of <code>ip</code></li>
+<li><a href="ip2continent_name/"><code>ip2continent_name(ip)</code></a>: Get <code>continent</code> of <code>ip</code></li>
+<li><a href="ip2country/"><code>ip2country(ip)</code></a>: Get <code>country_code</code> of <code>ip</code></li>
+<li><a href="ip2country_name/"><code>ip2country_name(ip)</code></a>: Get <code>country_name</code> of <code>ip</code></li>
+<li><a href="ip_range2ip_networks/"><code>ip_range2ip_networks(first_ip, last_ip)</code></a>: Convert an IP range into a json list of IP networks in CIDR notation</li>
+<li><a href="is_email_valid/"><code>is_email_valid(email)</code></a>: Return true if <code>email</code> is valid</li>
+<li><a href="is_phone_number_valid/"><code>is_phone_number_valid(phone_number, options)</code></a>: Return if <code>phone_number</code> is valid</li>
+<li><a href="markdown2html/"><code>markdown2html(markdown)</code></a>: Convert <code>markdown</code> to <code>html</code></li>
+<li><a href="ngram_frequency_similarity/"><code>ngram_frequency_similarity(string1, string2, n)</code></a>: Calculates n-gram similarity between two strings</li>
+<li><a href="parse_url/"><code>parse_url(url)</code></a>: Return <code>url</code> parts</li>
+<li><a href="parse_user_agent/"><code>parse_user_agent(user_agent_string)</code></a>: Parses User Agent strings into several components</li>
+<li><a href="phone_number_info/"><code>phone_number_info(phone_number, options)</code></a>: Get <code>phone_number</code> info</li>
+<li><a href="remove_accents/"><code>remove_accents(str)</code></a>: Remove accents</li>
+<li><a href="remove_extra_whitespaces/"><code>remove_extra_whitespaces(str)</code></a>: Remove unwanted whitespaces</li>
+<li><a href="remove_strings/"><code>remove_strings(string, strings_to_remove)</code></a>: Remove any string of <code>strings_to_remove</code> from <code>string</code></li>
+<li><a href="remove_words/"><code>remove_words(string, words_to_remove)</code></a>: Remove any word of <code>words_to_remove</code> from <code>string</code></li>
+<li><a href="render_handlebars_template/"><code>render_handlebars_template(template, context)</code></a>: Render template with context using handlebars.js templating library</li>
+<li><a href="render_template/"><code>render_template(template, context)</code></a>: Render template with context using nunjucks.js templating library</li>
+<li><a href="replace_special_characters/"><code>replace_special_characters(string, replacement)</code></a>: Replace most common special characters in a <code>string</code> with <code>replacement</code></li>
+<li><a href="translate/"><code>translate(text, target_language)</code></a>: Translate <code>text</code> into <code>target_language</code></li>
+<li><a href="url_decode/"><code>url_decode(url_encoded_string)</code></a>: Decode <code>url_encoded_string</code></li>
+<li><a href="xml_extract/"><code>xml_extract(xml, x_path)</code></a>: Returns content extracted from XML from given XPATH</li>
+</ul>
+<h2 id="transform-geo-data">🌐 Transform Geo Data<a class="headerlink" href="#transform-geo-data" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="geocode/"><code>geocode(address)</code></a>: Get <code>address</code> details from Google Maps</li>
+<li><a href="geocode_fr/"><code>geocode_fr(address)</code></a>: Get <code>address</code> details from api-adresse.data.gouv.fr</li>
+<li><a href="h3/"><code>h3(function_name, arguments)</code></a>: Wrapper around <a href="https://github.com/uber/h3-js">Uber H3</a></li>
+<li><a href="reverse_geocode/"><code>reverse_geocode(latitude, longitude)</code></a>: Get address details at <code>latitude</code>, <code>longitude</code></li>
+<li><a href="validate_address/"><code>validate_address(address)</code></a>: Validate <code>address</code> using Google Maps</li>
+</ul>
+<h2 id="transform-date">📆 Transform Date<a class="headerlink" href="#transform-date" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="date_sub_isoyear/"><code>date_sub_isoyear(date, years)</code></a>: Returns same day <code>years</code> before</li>
+<li><a href="generate_dates/"><code>generate_dates(start_date, end_date)</code></a>: Generate a table of dates</li>
+<li><a href="gregorian2hijri/"><code>gregorian2hijri(gregorian_date)</code></a>: Convert Gregorian Date to Hijri Date (taken from <a href="https://stackoverflow.com/questions/78072960/convert-dates-gregorian-to-hijri-bigquery#answer-78079872">here</a>)</li>
+<li><a href="is_public_holiday/"><code>is_public_holiday(date, country_code)</code></a>: Return true if <code>date</code> corresponds to a public holiday in <code>country_code</code></li>
+<li><a href="parse_date/"><code>parse_date(date_string)</code></a>: Parse date with automatic format detection</li>
+<li><a href="translated_month_name/"><code>translated_month_name(date, language)</code></a>: Get <code>translated_month_name</code></li>
+<li><a href="translated_weekday_name/"><code>translated_weekday_name(date, language)</code></a>: Get <code>translated_weekday_name</code></li>
+</ul>
+<h2 id="transform-json"><span style="color: var(--md-primary-fg-color);">{...}</span> Transform Json<a class="headerlink" href="#transform-json" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="create_materialized_view_w_flattened_json_column/"><code>create_materialized_view_w_flattened_json_column(fully_qualified_table, fully_qualified_materialized_view, json_column)</code></a>: Create a Materialized view of a table with <code>json_column</code> flattened</li>
+<li><a href="items2json/"><code>items2json(key_value_items)</code></a>: Returns <code>json</code> object from array of <code>key_value_items</code></li>
+<li><a href="json_column_schema/"><code>json_column_schema(data)</code></a>: Returns the schema of a json column</li>
+<li><a href="json_items/"><code>json_items(json_string)</code></a>: Extract <code>key_value_items</code> from <code>json_string</code></li>
+<li><a href="json_keys/"><code>json_keys(json_string)</code></a>: Extract <code>keys</code> from <code>json_string</code></li>
+<li><a href="json_merge/"><code>json_merge(json_string1, json_string2)</code></a>: Merge <code>json_string1</code> and <code>json_string2</code></li>
+<li><a href="json_query/"><code>json_query(json_string, query)</code></a>: Extract data from <code>json_string</code> using advanced json querying</li>
+<li><a href="json_schema/"><code>json_schema(data)</code></a>: Returns the schema of <code>data</code></li>
+<li><a href="json_values/"><code>json_values(json_string)</code></a>: Extract <code>values</code> from <code>json_string</code></li>
+<li><a href="sql_to_flatten_json_column/"><code>sql_to_flatten_json_column(data, fully_qualified_column)</code></a>: Generate the SQL to flatten a json <code>column</code></li>
+</ul>
+<h2 id="transform-array"><span style="color: var(--md-primary-fg-color);">[...]</span> Transform Array<a class="headerlink" href="#transform-array" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="are_arrays_equal/"><code>are_arrays_equal(array1, array2)</code></a>: Return true if <code>array1</code> = <code>array2</code></li>
+<li><a href="array_contains/"><code>array_contains(arr, value)</code></a>: Returns <code>true</code> if <code>value</code> is in array <code>arr</code> else returns <code>false</code></li>
+<li><a href="array_intersect/"><code>array_intersect(array1, array2)</code></a>: Returns the intersection of two arrays.</li>
+<li><a href="array_union/"><code>array_union(array1, array2)</code></a>: Returns the union of two arrays.</li>
+<li><a href="benford_distance/"><code>benford_distance(values)</code></a>: Calculate the distance from Benford's Law for given <code>values</code>.</li>
+<li><a href="distinct_values/"><code>distinct_values(arr)</code></a>: Return distinct values</li>
+<li><a href="find_greater_value/"><code>find_greater_value(arr, x)</code></a>: Return the <code>offset</code> (zero-based index) of the first <code>value</code> in <code>arr</code> where <code>value &gt;= x</code></li>
+<li><a href="find_lower_value/"><code>find_lower_value(arr, x)</code></a>: Return the <code>offset</code> (zero-based index) of the first <code>value</code> in <code>arr</code> where <code>value &lt;= x</code></li>
+<li><a href="find_value/"><code>find_value(arr, value)</code></a>: Return the first <code>offset</code> (zero-based index) of <code>value</code> in array <code>arr</code></li>
+<li><a href="frequent_values/"><code>frequent_values(values, frequency_threshold)</code></a>: Returns <code>frequent_values</code> among array of <code>values</code></li>
+<li><a href="get_value/"><code>get_value(key_value_items, search_key)</code></a>: Return the first <code>value</code> with a key <code>search_key</code> from <code>key_value_items</code></li>
+<li><a href="last_value/"><code>last_value(arr)</code></a>: Return last value of array</li>
+<li><a href="max_value/"><code>max_value(arr)</code></a>: Return max value of array</li>
+<li><a href="median_value/"><code>median_value(arr)</code></a>: Return median value of array</li>
+<li><a href="min_max_scaler/"><code>min_max_scaler(arr)</code></a>: Performs min-max scaling on an array.</li>
+<li><a href="min_value/"><code>min_value(arr)</code></a>: Return min value of array</li>
+<li><a href="percentile_value/"><code>percentile_value(arr, percentile)</code></a>: Returns percentile of an array with percentile a float in range [0, 1].</li>
+<li><a href="rare_values/"><code>rare_values(values, frequency_threshold)</code></a>: Returns <code>rare_values</code> among array of <code>values</code></li>
+<li><a href="remove_value/"><code>remove_value(arr, value)</code></a>: Return an array with all values except <code>value</code>.</li>
+<li><a href="sort_values/"><code>sort_values(arr)</code></a>: Return sorted array (ascending)</li>
+<li><a href="sort_values_desc/"><code>sort_values_desc(arr)</code></a>: Return sorted array (descending)</li>
+<li><a href="sum_values/"><code>sum_values(arr)</code></a>: Return the sum of array values</li>
+<li><a href="z_scores/"><code>z_scores(arr)</code></a>: Compute <code>z_scores</code></li>
+</ul>
+<h2 id="machine-learning">🧠 Machine Learning<a class="headerlink" href="#machine-learning" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="precision_recall_auc/"><code>precision_recall_auc(predictions)</code></a>: Returns the Area Under the Precision Recall Curve (a.k.a. AUC PR)</li>
+<li><a href="precision_recall_curve/"><code>precision_recall_curve(predictions)</code></a>: Returns the Precision-Recall Curve</li>
+<li><a href="prophet/"><code>prophet(records, periods, kwargs)</code></a>: Return Time Series Forecast as json using <a href="https://facebook.github.io/prophet/docs/quick_start.html#python-api">prophet</a></li>
+<li><a href="prophet_table/"><code>prophet_table(records, periods, kwargs)</code></a>: Return Time Series Forecast as table using <a href="https://facebook.github.io/prophet/docs/quick_start.html#python-api">prophet</a></li>
+<li><a href="roc_auc/"><code>roc_auc(predictions)</code></a>: Returns the Area Under the Receiver Operating Characteristic Curve (a.k.a. ROC AUC)</li>
+<li><a href="roc_curve/"><code>roc_curve(predictions)</code></a>: Returns the Receiver Operating Characteristic Curve (a.k.a. ROC Curve)</li>
+<li><a href="sentiment_score/"><code>sentiment_score(content)</code></a>: Compute sentiment score of <code>content</code></li>
+</ul>
+<h2 id="graph">🌐 Graph<a class="headerlink" href="#graph" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="connected_components/"><code>connected_components(fully_qualified_table)</code></a>: Compute the connected components of a non-directed graph.</li>
+</ul>
+<h2 id="convert-data-format">🔨 Convert Data Format<a class="headerlink" href="#convert-data-format" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="html2pdf/"><code>html2pdf(html)</code></a>: Convert <code>html</code> to <code>pdf</code></li>
+<li><a href="json2excel/"><code>json2excel(data)</code></a>: Dump data to excel file</li>
+<li><a href="json2xml/"><code>json2xml(json)</code></a>: Returns XML for given JSON string</li>
+<li><a href="xml2json/"><code>xml2json(xml)</code></a>: Returns JSON as a string for given XML string</li>
+</ul>
+<h2 id="explore">👀 Explore<a class="headerlink" href="#explore" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="chart/"><code>chart(data, chart_type, ylabel)</code></a>: Return html with a chartjs chart</li>
+<li><a href="explore_column/"><code>explore_column(fully_qualified_column)</code></a>: Show column statistics</li>
+<li><a href="explore_dataset/"><code>explore_dataset(fully_qualified_dataset)</code></a>: Show infos about dataset tables</li>
+<li><a href="explore_table/"><code>explore_table(fully_qualified_table)</code></a>: Show table infos and column statistics</li>
+<li><a href="list_dataset_tables/"><code>list_dataset_tables(fully_qualified_dataset)</code></a>: List tables of <code>fully_qualified_dataset</code></li>
+<li><a href="sankey_chart/"><code>sankey_chart(data)</code></a>: Return html with a Sankey Google chart</li>
+</ul>
+<h2 id="utils">🔨 Utils<a class="headerlink" href="#utils" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="deduplicate_rows/"><code>deduplicate_rows(query_or_table_or_view)</code></a>: Returns the deduplicated rows of <code>query_or_table_or_view</code></li>
+<li><a href="get_latest_partition_timestamp/"><code>get_latest_partition_timestamp(fully_qualified_table)</code></a>: Return the maximum of the partition column of <code>fully_qualified_table</code></li>
+<li><a href="get_table_columns/"><code>get_table_columns(fully_qualified_table)</code></a>: Get the column information of the given table from <code>INFORMATION_SCHEMA.COLUMNS</code></li>
+<li><a href="get_view_history/"><code>get_view_history(fully_qualified_view)</code></a>: Get BigQuery View history</li>
+<li><a href="list_scheduled_queries/"><code>list_scheduled_queries(project)</code></a>: Returns<code>scheduled_queries</code> of project <code>project</code>.</li>
+<li><a href="run_python/"><code>run_python(python_code, requirements, kwargs)</code></a>: Run any <code>python_code</code>.</li>
+<li><a href="sleep/"><code>sleep(seconds)</code></a>: Sleep during <code>seconds</code> seconds</li>
+<li><a href="timestamp_from_unix_date_time/"><code>timestamp_from_unix_date_time(unix_date_time, date_time_part)</code></a>: Interprets <code>unix_date_time</code> as the number of <code>date_time_part</code> since <code>1970-01-01 00:00:00 UTC</code>.</li>
+<li><a href="timestamp_to_unix_date_time/"><code>timestamp_to_unix_date_time(timestamp_expression, date_time_part)</code></a>: Returns the number of <code>date_time_part</code> since <code>1970-01-01 00:00:00 UTC</code>.</li>
+<li><a href="upsert/"><code>upsert(query_or_table_or_view, destination_table, insertion_mode, primary_keys, recency_field)</code></a>: Merges <code>query_or_table_or_view</code> into the <code>destination_table</code>.</li>
+</ul>
+
+<!-- Source file information -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+<!-- Was this page helpful? -->
+
+
+
+
+<!-- Comment system -->
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+<!-- Application footer -->
+<footer class="md-footer">
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        <img
+          src="https://unytics.io/bigfunctions/assets/logo_and_name.png"
+          alt=""
+          draggable="false"
+          width="300"
+        >
+        
+          <div class="md-footer-copyright__highlight" style="color: rgb(92, 92, 92);">
+            Copyright &copy; 2024 Unytics
+          </div>
+        
+      </div>
+
+      <!-- Social links -->
+      <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unytics/bigfunctions" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://join.slack.com/t/unytics/shared_invite/zt-1gbv491mu-cs03EJbQ1fsHdQMcFN7E1Q" target="_blank" rel="noopener" title="join.slack.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/unytics/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["tabs", "content.tabs.link", "content.code.copy", "navigation.path", "navigation.tabs", "navigation.tracking", "navigation.indexes", "navigation.hide"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>
